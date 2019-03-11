@@ -1,0 +1,39 @@
+<div class="container">
+    <alert-success [hidden]="!successMessage.show">
+        <span [innerHTML]="successMessage.message"></span>
+    </alert-success>
+    <div class="row">
+        <h1>Nossos empregados</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-primary" (click)="openNewModal()">Novo empregado</button>
+                </td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Salário</th>
+                <th>Bônus</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let employee of employees"> <!-- {data: []} -->
+                <td>
+                    <a href="javascript:void(0);" (click)="openDetailModal(employee)">
+                        {{employee.name}}
+                    </a>
+                </td>
+                <td [innerHTML]="employee.salary | myCurrency" [salaryColor]="employee.salary"></td>
+                <td>{{employee.bonus}}</td>
+                <td>
+                    <a href="javascript:void(0)" (click)="openEditModal(employee)">Editar</a> |
+                    <a href="javascript:void(0)" (click)="openDestroyModal(employee)">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

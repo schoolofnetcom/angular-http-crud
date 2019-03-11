@@ -1,0 +1,46 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Fulano da Silva",
+      "salary": 1000,
+      "bonus": 0
+    },
+    {
+      "id": 2,
+      "name": "Cicrano da Silva",
+      "salary": 10000,
+      "bonus": 0
+    },
+    {
+      "id": 3,
+      "name": "Beltrano da Silva",
+      "salary": 900,
+      "bonus": 5
+    },
+    {
+      "id": 4,
+      "name": "Funcionario X",
+      "salary": 800,
+      "bonus": 10
+    },
+    {
+      "id": 5,
+      "name": "Funcionario Y",
+      "salary": 700,
+      "bonus": 100
+    },
+    {
+      "id": 6,
+      "name": "Funcionario Z",
+      "salary": 600,
+      "bonus": 1000
+    },
+    {
+      "name": "teste",
+      "salary": "100",
+      "bonus": "10",
+      "id": 7
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<modal-title>
+    <h5>Empregado {{employee?.name}}</h5>
+</modal-title>
+<modal-body>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th scope="row">Nome</th>
+            <td>{{employee?.name}}</td>
+        </tr>
+        <tr *ngIf="employee?.salary < 1000; else notBonus">
+            <th scope="row">Bonus</th>
+            <td>{{employee?.bonus}}</td>
+        </tr>
+        <ng-template #notBonus>
+            <tr>
+                <th scope="row">Obs.:</th>
+                <td>Funcionário não tem bônus</td>
+            </tr>
+        </ng-template>
+        </tbody>
+    </table>
+</modal-body>
+<modal-footer>
+    <div modal-footer>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</modal-footer>
