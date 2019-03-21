@@ -1,12 +1,5 @@
 import {Injectable} from '@angular/core';
 
-export interface Employee {
-    readonly id?: number;
-    name: string;
-    salary: number;
-    bonus: number;
-}
-
 @Injectable({
     providedIn: 'root'
 })

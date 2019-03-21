@@ -1,26 +1,32 @@
 <div class="container">
-    <alert-success [hidden]="!successMessage.show">
-        <span [innerHTML]="successMessage.message"></span>
-    </alert-success>
     <div class="row">
         <h1>Nossos empregados</h1>
         <table class="table table-striped">
             <thead>
             <tr>
                 <td colspan="4">
-                    <button class="btn btn-primary" (click)="openNewModal()">Novo empregado</button>
+                    <div class="row">
+                        <div class="col-2 col-md-1">
+                            <button class="btn btn-primary" (click)="openNewModal()" title="Novo empregado">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="col-9 col-md-11">
+                            <employee-search (onSearch)="handleSearch($event)"></employee-search>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <th>Nome</th>
-                <th>Salário</th>
+                <th [sortColumn]="sortColumn" columnName="name" (onSort)="handleSort($event)">Nome</th>
+                <th [sortColumn]="sortColumn" columnName="salary" (onSort)="handleSort($event)">Salário</th>
                 <th>Bônus</th>
                 <th>Ações</th>
             </tr>
             </thead>
             <tbody>
-
-            <tr *ngFor="let employee of employees"> <!-- {data: []} -->
+            <!--<tr *ngFor="let employee of employees | employeeFilter: search | order: sortColumn| paginate: pagination">-->
+            <tr *ngFor="let employee of employees| paginate: pagination"> <!-- {data: []} -->
                 <td>
                     <a href="javascript:void(0);" (click)="openDetailModal(employee)">
                         {{employee.name}}
@@ -35,5 +41,6 @@
             </tr>
             </tbody>
         </table>
+        <pagination-controls previousLabel="Anterior" nextLabel="Próximo" (pageChange)="handlePagination($event)"></pagination-controls>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Employee, EmployeeService} from '../../services/employee.service';
+import {EmployeeService} from '../../services/employee.service';
 import {ModalRefService} from '../modal-dynamic/modal-ref.service';
+import {Employee} from '../../models';
 
 @Component({
     selector: 'employee-detail-modal',

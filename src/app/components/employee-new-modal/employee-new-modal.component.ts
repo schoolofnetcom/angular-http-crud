@@ -1,13 +1,15 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Employee, EmployeeService} from '../../services/employee.service';
+import {EmployeeService} from '../../services/employee.service';
 import {InputDirective} from '../../directives/input.directive';
 import {ModalRefService} from '../modal-dynamic/modal-ref.service';
-import {HttpClient} from '@angular/common/http';
+import {NotifyMessageService} from '../../services/notify-message.service';
+import {Employee} from '../../models';
+import {EmployeeHttpService} from '../../services/employee-http.service';
 
 @Component({
     selector: 'employee-new-modal',
     templateUrl: './employee-new-modal.component.html',
-    styleUrls: ['./employee-new-modal.component.css']
+    styleUrls: ['./employee-new-modal.component.scss']
 })
 export class EmployeeNewModalComponent implements OnInit, OnDestroy {
 
@@ -23,9 +25,10 @@ export class EmployeeNewModalComponent implements OnInit, OnDestroy {
     @ViewChild('inputSalary', {read: InputDirective})
     inputName: InputDirective;//ElementRef
 
-    constructor(private http: HttpClient,
+    constructor(private employeeHttp: EmployeeHttpService,
                 private employeeService: EmployeeService,
-                private modalRef: ModalRefService) {
+                private modalRef: ModalRefService,
+                private notifyMessage: NotifyMessageService) {
     }
 
     ngOnInit() {
@@ -36,10 +39,12 @@ export class EmployeeNewModalComponent implements OnInit, OnDestroy {
     }
 
     addEmployee(event) {
-        this.http
-            .post('http://localhost:3000/employees', this.employee)
+        this.employeeHttp.create(this.employee)
             .subscribe(
-                data => this.modalRef.hide({employee: data, submitted: true})
+                data => {
+                    this.modalRef.hide({employee: data, submitted: true});
+                    this.notifyMessage.success('Sucesso', `O empregado <strong>${this.employee.name}</strong> foi criado com sucesso`);
+                }
             );
     }
 
